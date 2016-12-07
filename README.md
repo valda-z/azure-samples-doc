@@ -1,1 +1,13 @@
-# azure-samples-doc
+# Azure LAB examples
+
+## [IaaS, VLAN, Loadbalancer](iaas-vlan-loadbalancer/README.md)
+
+## [SWARM](swarm/README.md)
+
+## [Simple PaaS SQL, Web App](simple-paas-sql-webapp/README.md)
+
+## [.Net Web App, Sql, VLAN, ServiceBus](net-webapp-sql-vnet-servicebus/README.md)
+
+## [Java Web App, DocumentDB, VLAN, ServiceBus](java-webapp-documentdb-servicebus/README.md)
+
+
