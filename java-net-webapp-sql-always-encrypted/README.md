@@ -45,6 +45,7 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 
 ## Step 4 - generate Active Directory Application credentials:
 You must enable your client application to access the SQL Database service by setting up the required authentication and acquiring the ClientId and Secret that you will need to authenticate your application in the following code.
+
 1. Open the **[Azure classic portal](http://manage.windowsazure.com/)**.
 2. Select Active Directory and click the Active Directory instance that your application will use.
 3. Click Applications, and then click **ADD**.
