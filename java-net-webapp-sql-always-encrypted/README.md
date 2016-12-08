@@ -22,12 +22,17 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 
 ## Step 3 - create table with encrypted column:
 - Use SSMS to connect to your database
+
+```sql
 	 	CREATE TABLE [dbo].[ToDo](
 	  	[Id] [int] IDENTITY(1,1),
 	  	[Note] [varchar](500) NULL,
 	  	[MySecretNote] [varchar](500) NULL
 	  	PRIMARY KEY CLUSTERED ([Id] ASC) ON [PRIMARY] );
 	  	GO
+
+```
+
 - Encrypt column (on table select "Encrypt column …"
 ![](img/img2.png)
 
@@ -70,7 +75,7 @@ You must enable your client application to access the SQL Database service by se
 
 ## Step 7 - Build and deploy:
 | .Net track | Java track |
-|--|--|
+|--------|--------|
 | • Git: https://github.com/valda-z/webapp-keyvault-sqlalwayzencrypted | • Prerequisites: Maven, Docker, Java JDK 8 |
 | • .NET project uses these NuGet packages | • Create Azure Container Registry: Enable "Admin user access" and remember user and user key |
 | `Install-Package Microsoft.SqlServer.Management.AlwaysEncrypted.AzureKeyVaultProvider` | • Download source codes / Git: https://github.com/valda-z/webapp-keyvault-sqlalwayzencrypted |
@@ -82,7 +87,7 @@ You must enable your client application to access the SQL Database service by se
 
 ## Step 8 - Configure web app and run:
 | .Net track | Java track |
-|--|--|
+|--------|--------|
 | • Select your Web App and change "Application settings" | • Select your Web App and change "Application settings" |
 | • • • App setting | • • • App setting |
 | • • • • • • applicationADID = "Your CLIENT ID for application in AD" | • • • • • • SQLSERVER_CLIENTID = "Your CLIENT ID for application in AD" |
