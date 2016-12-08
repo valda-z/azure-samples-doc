@@ -10,4 +10,5 @@
 
 ## [Java Web App, DocumentDB, VLAN, ServiceBus](java-webapp-documentdb-servicebus/README.md)
 
+## [Java/.NET Web App, Sql(Always Encrypted + TDE)](java-net-webapp-sql-always-encrypted/README.md)
 
