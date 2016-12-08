@@ -18,6 +18,7 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 - In Azure Portal create "Key Vault" in our resource group
 - Name: `MyAEKeyVault`
 - Extend access policy for key vault also to crypto operations:
+
 ![](img/img1.png)
 
 ## Step 3 - create table with encrypted column:
@@ -34,13 +35,18 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 ```
 
 - Encrypt column (on table select "Encrypt column …"
+
 ![](img/img2.png)
 
 - Define Column Master Key (CMK) and Column Encryption Key (CEK)
 - In "Column Selection" select columnt "MySecretColumn" and encryption type "Randomized"
+
 ![](img/img3.png)
+
 - On "Master Key  Configuration" select "Azure Key Vault", sign into Azure and select our previously created Key Vault
+
 ![](img/img4.png)
+
 - Finish process - CEK, CMK and encrypted column are provisioned
 
 ## Step 4 - generate Active Directory Application credentials:
