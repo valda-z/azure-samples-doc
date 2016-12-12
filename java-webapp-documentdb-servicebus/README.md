@@ -34,14 +34,15 @@ Main source code repository: https://github.com/valda-z/documentdb-java-todo-app
 - Create VNET for web app
 	- Select web app
 	- Networking -> create VNET … (setup)
-	- Networking -> setup -> add vnet - 40 minutes deployment!!!
+	- Networking -> setup -> add vnet - 40 minutes deployment!!! (Web App has to have Standard or Premium plan - plan can be changed directly by link)
+		- after deployment of VLAN once again check Network setting in Web App "Networking" - probably you have to run Setup again and select created VLAN in previous step
 - Create GeoIP Service host
 	- Create linux VM in VNET
 		- Ubuntu 16.04
 		- `sudo apt update --yes &sudo apt dist-upgrade --yes`
+		- Docker: `wget -qO- https://get.docker.com/ | sh`
 		- `mkdir geoip`
 		- `cd geoip`
-		- Docker: `wget -qO- https://get.docker.com/ | sh`
 		- Download geoip DB: `wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz`
 		- Unzip: `gzip -d GeoLite2-City.mmdb.gz`
 		- Pull image: `docker pull klauspost/geoip-service`
