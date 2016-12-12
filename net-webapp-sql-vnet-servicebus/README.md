@@ -12,7 +12,7 @@ Simple application which stores in database each request from client, client IP 
 		- For JAVA https://plumbr.eu/blog/java/how-to-use-asynchronous-servlets-to-improve-performance
 		- For JAVA: http://www.byteslounge.com/tutorials/asynchronous-servlets-in-java
 	- Build, prepare to deploy (**github sources**)
-		- https://github.com/vazvadsk/simplelist/tree/master/simplelist
+		- https://github.com/vazvadsk/simplelist/
 - Azure infrastructure
     - Create "Web App + SQL"
 		- Create DB
