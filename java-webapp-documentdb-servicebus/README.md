@@ -7,11 +7,14 @@ Main source code repository: https://github.com/valda-z/documentdb-java-todo-app
 ![Architecture](img/architecture.png)
 
 ## Scenario 1 - Web App Tomcat + DocumentDB
-- Create Web App Tomcat
+- Create Web App
+	- in Application setting enable
+		- JAVA (Newest 1.8)
+		- Tomcat 8.5 newest
 - Create DocumentDB in same resource group
 - JAVA IDE
 	- .\documentdb-java-todo-app\src\com\microsoft\azure\documentdb\sample\dao\DocumentClientFactory.java
-		- Change `HOST` and `MASTERKEY` to corresponding values from DocumentDB instance
+		- Change `HOST` and `MASTERKEY` to corresponding values from DocumentDB instance (you can find them in section "Keys" in your Document DB)
 	- Compile WAR
 - Download war to Web App (ftp) - to `site/webapps` folder (appname.war)
 - Start web app - appname
