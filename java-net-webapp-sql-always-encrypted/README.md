@@ -6,9 +6,9 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 ## Step 1 - create resource group with SQL database:
 - Create Resource group which will host our application
     - in Azure portal click on resource group button in tool bar and than on "+ Add" button
-    - ![img1](img/img1.PNG)
+    - ![img1](img/img1.png)
     - Enter Resource group name and select right location for your resources
-    - ![img2](img/img2.PNG)
+    - ![img2](img/img2.png)
 - Create Azure SQL database
     - Again use green "+" for creating new resource, enter "sql" to search area and press Enter
     - ![img6](img/img6.PNG)
@@ -96,9 +96,9 @@ You must enable your client application to access the SQL Database service by se
 | .NET track | Java track |
 |--------|--------|
 | Create Web App - click on green "+" button in left top corner and enter "web app" to search area and press enter | Create Web App on Linux
-| ![img3](img/img3.PNG) | - Leve node.js, we will change it later on during configuration |
+| ![img3](img/img3.png) | - Leve node.js, we will change it later on during configuration |
 | Azure will show list of resources which can be created, use "Web App" - Microsoft/Web + Mobile and click "Create Button | |
-| ![img4](img/img4.PNG) | |
+| ![img4](img/img4.png) | |
 | Enter valid app name and select your existing Resource group created in previous steps | |
 | ![img5](img/img5.PNG) | |
 
