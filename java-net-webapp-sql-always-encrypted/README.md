@@ -4,10 +4,28 @@
 Create web app deployed to web app service which uses PaaS Azure SQL database for data storing, SQL database is in TDE mode with enabled Always Encrypted behavior for selected columns in data table.
 
 ## Step 1 - create resource group with SQL database:
-- Create "SQL Database" (Microsoft/Database)
-	- Database name `keyvaulttest`
-	- New resource group
-	- New database server (select right name there)
+- Create Resource group which will host our application
+    - in Azure portal click on resource group button in tool bar and than on "+ Add" button
+    - ![img1](img/img1.PNG)
+    - Enter Resource group name and select right location for your resources
+    - ![img2](img/img2.PNG)
+- Create Azure SQL database
+    - Again use green "+" for creating new resource, enter "sql" to search area and press Enter
+    - ![img6](img/img6.PNG)
+    - From list of resources select "SQL Database" - Microsoft/Database and than click Create button
+    - ![img7](img/img7.PNG)
+    - Enter following data in creation form:
+        - valid "Database name"
+        - use existing Resource group created in previous steps
+        - Create new "Server"
+            - valid "Server name"
+            - valid "Server name login"
+            - valid "Password"
+            - and right Location for your server
+            - than click on Select button
+        - Select right pricing tier
+        - Click on Create button 
+    - ![img8](img/img8.PNG)
 - Enable firewall (for demonstration purposes)
 	- On created SQL server instance enable firewall "allow" rule for range: `0.0.0.0` - `255.255.255.255`
 - Enable TDE on database
@@ -19,7 +37,7 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 - Name: `MyAEKeyVault`
 - Extend access policy for key vault also to crypto operations:
 
-![](img/img1.png)
+![](img/iimg1.png)
 
 ## Step 3 - create table with encrypted column:
 - Use SSMS to connect to your database
@@ -36,35 +54,35 @@ Create web app deployed to web app service which uses PaaS Azure SQL database fo
 
 - Encrypt column (on table select "Encrypt column …"
 
-![](img/img2.png)
+![](img/iimg2.png)
 
 - Define Column Master Key (CMK) and Column Encryption Key (CEK)
 - In "Column Selection" select columnt "MySecretColumn" and encryption type "Randomized"
 
-![](img/img3.png)
+![](img/iimg3.png)
 
 - On "Master Key  Configuration" select "Azure Key Vault", sign into Azure and select our previously created Key Vault
 
-![](img/img4.png)
+![](img/iimg4.png)
 
 - Finish process - CEK, CMK and encrypted column are provisioned
 
 ## Step 4 - generate Active Directory Application credentials:
-You must enable your client application to access the SQL Database service by setting up the required authentication and acquiring the ClientId and Secret that you will need to authenticate your application in the following code.
+You must enable your client application to access the SQL Database service by setting up the required authentication and acquiring the ClientId and Secret that you will need to authenticate your application in the following code.
 
-1. Open the **[Azure classic portal](http://manage.windowsazure.com/)**.
-2. Select Active Directory and click the Active Directory instance that your application will use.
-3. Click Applications, and then click **ADD**.
-4. Type a name for your application (for example: myClientApp), select **WEB APPLICATION**, and click the arrow to continue.
-5. For the **SIGN-ON URL** and **APP ID URI** you can type a valid URL (for example, http://myClientApp) and continue.
-6. Click **CONFIGURE**.
-7. Copy your **CLIENT ID**. (You will need this value in your code later.)
-8. In the **keys** section, select **1 year** from the **Select duration** drop-down list. (You will copy the key after you save in (12).)
-9. Scroll down and click **Add application**.
-10. Leave **SHOW** set to **Microsoft Apps** and select **Microsoft Azure Service Management**. Click the checkmark to continue.
-11. Select **Access Azure Service Management** from the **Delegated Permissions** drop-down list.
-12. Click **SAVE**.
-13. After the save finishes, copy the key value in the **keys** section. (You will need this value in your code later.)
+1. Open the **[Azure classic portal](http://manage.windowsazure.com/)**.
+2. Select Active Directory and click the Active Directory instance that your application will use.
+3. Click Applications, and then click **ADD**.
+4. Type a name for your application (for example: myClientApp), select **WEB APPLICATION**, and click the arrow to continue.
+5. For the **SIGN-ON URL** and **APP ID URI** you can type a valid URL (for example, http://myClientApp) and continue.
+6. Click **CONFIGURE**.
+7. Copy your **CLIENT ID**. (You will need this value in your code later.)
+8. In the **keys** section, select **1 year** from the **Select duration** drop-down list. (You will copy the key after you save in (12).)
+9. Scroll down and click **Add application**.
+10. Leave **SHOW** set to **Microsoft Apps** and select **Microsoft Azure Service Management**. Click the checkmark to continue.
+11. Select **Access Azure Service Management** from the **Delegated Permissions** drop-down list.
+12. Click **SAVE**.
+13. After the save finishes, copy the key value in the **keys** section. (You will need this value in your code later.)
 
 ## Step 5 - give access to application in Key Vault:
 - Select your Key Vault
@@ -77,8 +95,12 @@ You must enable your client application to access the SQL Database service by se
 ## Step 6 - Prepare web app:
 | .NET track | Java track |
 |--------|--------|
-| Create Web App (Microsoft / Web + Mobile) | Create Web App on Linux
-| | - Leve node.js, we will change it later on during configuration |
+| Create Web App - click on green "+" button in left top corner and enter "web app" to search area and press enter | Create Web App on Linux
+| ![img3](img/img3.PNG) | - Leve node.js, we will change it later on during configuration |
+| Azure will show list of resources which can be created, use "Web App" - Microsoft/Web + Mobile and click "Create Button | |
+| ![img4](img/img4.PNG) | |
+| Enter valid app name and select your existing Resource group created in previous steps | |
+| ![img5](img/img5.PNG) | |
 
 ## Step 7 - Build and deploy:
 | .Net track | Java track |
@@ -93,7 +115,7 @@ You must enable your client application to access the SQL Database service by se
 |  | `docker push <YOUR REPO>.azurecr.io/valdazure/sqlkeyvault` |
 
 ## Step 8 - Configure web app and run:
-| .Net track | Java track |
+| .Net track | Java track | 
 |--------|--------|
 | • Select your Web App and change "Application settings" | • Select your Web App and change "Application settings" |
 | • • • App setting | • • • App setting |
