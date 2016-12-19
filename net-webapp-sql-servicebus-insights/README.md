@@ -102,24 +102,108 @@ Windows version of emulator running on Windows 2016 server with docker extension
 - ![img121](img/img121.PNG)
 - From list of resources select "Windows Server 2016 Datacenter - with Containers"
 - ![img122](img/img122.PNG)
-- 
+- Press Create button.
+- Enter server name, username, password and select your Resource group and right location and press Ok button
+- ![img123](img/img123.PNG)
+- Select machine size - D1v2 or D1 is enough
+- In Settings pane leave "new" storage account, check that our VLAN for Web App is selected and "default" subnet is selected, switch Monitoring / boot diagnostic to "Disabled" and configure "Extension" - see next image with detailed Extension configuration
+- ![img124](img/img124.PNG)
+- Click "Add extension" link and select "Custom Script Extension" from list of available extension - than click on Create button
+- ![img126](img/img126.PNG)
+- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/net-webapp-sql-servicebus-insights/setups.ps1 
+- Select setup.ps1 file to the "Script File" field
+- Enter to "Arguments" this command: `powershell.exe -ExecutionPolicy Unrestricted -File setup.ps1`
+- Click on Ok button and on parent pane also on Ok button
+- Finally confirm Setting pane by Ok button
+- ![img127](img/img127.PNG)
+- On last pane "Summary" confirm server creation process by Ok button
+- After successful deployment check if server is really running in Azure console and **restart server** again to apply installed changes
 
 #### Linux version of emulator
-Linux version of emulator
+Linux version of emulator running on Ubuntu Server 16.04 with docker, Ubuntu server is installed and configured by Extension Script.
+- Use green "+" button and enter "Ubuntu Server 16.04" to search box
+- ![img130](img/img130.PNG)
+- From list of resources select "Ubuntu Server 16.04 LTS"
+- ![img131](img/img131.PNG)
+- Press Create button
+- Enter server name, username, SSH key or password and select your Resource group and right location and press Ok button
+- ![img132](img/img132.PNG)
+- Select machine size - D1v2 or D1 is enough
+- In Settings pane leave "new" storage account, check that our VLAN for Web App is selected and "default" subnet is selected, switch Monitoring / boot diagnostic to "Disabled" and configure "Extension" - see next image with detailed Extension configuration
+- ![img124](img/img124.PNG)
+- Click "Add extension" link and select "Custom Script For Linux" from list of available extension - than click on Create button
+- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/net-webapp-sql-servicebus-insights/setups.sh 
+- Select setup.sh file to the "Script File" field
+- Enter to "Arguments" this command: `sh setup.sh`
+- Click on Ok button and on parent pane also on Ok button
+- Finally confirm Setting pane by Ok button
+- ![img133](img/img133.PNG)
+- On last pane "Summary" confirm server creation process by Ok button
+
 
 ## Test VLAN integration
+- Select Web App (App service) in your resource group
+- In App Service pane select option "Application settings"
+- In App settings section define variable `GEOIPSERVER` and for value use internal IP address of your on-prem emulator.
+- ![img134](img/img134.PNG)
+- Save changes in Application settings
+- Test your Web App in browser
 
 ## Create Service Bus and test messaging
+- Use green "+" button and enter "service bus" in search box
+- ![img201](img/img201.PNG)
+- From resources list select Service Bus - Microsoft / Internet of Things and click Create button
+- ![img201](img/img202.PNG)
+- Enter valid name for your Service Bus, select your existing resource group and right location for deployment
+- ![img202](img/img203.PNG)
+- Click Ok button
+- Configure Service Bus
+    - Collect necessary information for connecting
+        - Select in resource group your Service Bus
+        - In Overview pane click on link "Connection Strings"
+        - ![img204](img/img204.PNG)   
+        - In the list of Shared access policies select "RootManageSharedAccessKey"
+        - On detail pane select "Connection string–primary key" and copy connection string
+        - ![img205](img/img205.PNG)
+    - Create Topic "todotopic
+        - Select option "Topics" in section Entities on your Service Bus
+        - Click on button "+ Topic"
+        - ![img206](img/img206.PNG)
+        - In the pane for New Topic define name "todotopic" for topic
+        - ![img207](img/img207.PNG)
+        - And click on Create button
+        - Go back to list of Topics (you have to click on Queues and than back to Topics to refresh list)
+        - In the list of Topics select our "todotopic"
+        - In Topic detail view select option "Subscriptions"
+        - And create new Subscription by clicking on button "+ Subscription"
+        - ![img208](img/img208.PNG)
+        - Define name "all" for default subscription
+        - ![img209](img/img209.PNG)
+        - And click on button Create
+
+- Configure Web App
+    - Select Web App (App service) in your resource group
+    - In App Service pane select option "Application settings"
+    - In App settings section define variable `SERVICEBUS_URI` and for value use URI for your Service Bus
+    - ![img134](img/img210.PNG)
+    - Save changes in Application settings
+    - Test your Web App in browser
+        - Now application hast to create service bus messages in topic "todotopic"
+        - Use application Service Bus Explorer if messagess are really created in your topic (download from: https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a) 
+            - Messages are created only for new ToDoes    
 
 ## Create Func App for messages processing
 
-create computer, integrate
+
 
 create service bus, integrate
 - todotopic
     - Category
 
 create func app
+
+## Profile Web App with Application Insights
+
  
 
 

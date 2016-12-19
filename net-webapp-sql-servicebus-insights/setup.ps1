@@ -11,6 +11,7 @@ netsh interface portproxy add v4tov4 listenport=5000 listenaddress=`$lip connect
 "
 $text > c:\run.ps1
 
-$trigger = New-JobTrigger -AtStartup -RandomDelay 00:00:30
-Register-ScheduledJob -Trigger $trigger -FilePath C:\run.ps1 -Name RunDocker
+schtasks /Create /RU "SYSTEM" /SC ONSTART /TR "powershell.exe -ExecutionPolicy Unrestricted -File c:\run.ps1" /TN "RunDocker"
+
+Restart-Computer
 
