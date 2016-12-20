@@ -331,3 +331,9 @@ Information source: https://docs.microsoft.com/en-us/azure/application-insights/
 - Save page
 - Publish ToDoWebApp project again to Azure
 - See new statistics for browser page data in Application Insights
+
+## Performance testing
+
+Information source: https://docs.microsoft.com/en-us/azure/app-service-web/app-service-web-app-performance-test 
+
+
