@@ -111,7 +111,7 @@ Windows version of emulator running on Windows 2016 server with docker extension
 - ![img124](img/img124.PNG)
 - Click "Add extension" link and select "Custom Script Extension" from list of available extension - than click on Create button
 - ![img126](img/img126.PNG)
-- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/master/net-webapp-sql-servicebus-insights/setups.ps1 
+- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/master/net-webapp-sql-servicebus-insights/setup.ps1 
 - Select setup.ps1 file to the "Script File" field
 - Enter to "Arguments" this command: `powershell.exe -ExecutionPolicy Unrestricted -File setup.ps1`
 - Click on Ok button and on parent pane also on Ok button
