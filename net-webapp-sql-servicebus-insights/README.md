@@ -95,6 +95,7 @@ Simple ToDo application which uses ASP NET MVC front end, data are stored in Azu
 ## Create on-prem emulator in VLAN (VM)
 
 Use on of the following emulator version - Linux or Windows system. Emulator itself is dockerized core-net application with RESTFull interface running on port 5000 of VM.
+During creation of VMs you will use Custom Extension Scripts, these scripts are run after VM base image is provisioned and it can install or configure host operating system, see code in our scripts for detail.
 
 #### Windows version of emulator
 Windows version of emulator running on Windows 2016 server with docker extension, docker image itself is installed by Extension Script (extension script also creates scheduled task which startups docker image after reboot.
@@ -194,16 +195,139 @@ Linux version of emulator running on Ubuntu Server 16.04 with docker, Ubuntu ser
 
 ## Create Func App for messages processing
 
+- Prepare additional subscription with condition routing for demonstration
+    - Use Service Bus Explorer, connect to your Service Bus (use URI connection string)
+    - Open "todotopic" and click by right mouse button on Subscriptions
+    - Select from menu "Create Subscription"
+        - Subscription name "critical"
+        - To "Filter" field insert this condition: `Category = 'CRITICAL'`
+        - Click on button "Create"
 
+- Use green "+" button and enter "function app" to search box
+- ![img301](img/img301.PNG)
+- From list of resources select "Function App"
+- ![img302](img/img302.PNG)
+- Press Create button
+- Enter valid name for Function App - field "App name"
+- Select your existing resource group
+- ![img303](img/img303.PNG)
+- Click on Create button
 
-create service bus, integrate
-- todotopic
-    - Category
+#### Function app for processing "critical" subscription
+- Select your Function App in resource group 
+- In left pane of Function App workplace select "+ New Function"
+- ![img304](img/img304.PNG)
+- From list of available templates select "ServiceBusTopisTrigger - JavaScript"
+- ![img305](img/img305.PNG)
+- Enter valid name for your function, name of Topic in your service bus (in our case todotopic) and name of Subscription (in our case critical)
+- Define connection to Service Bus by clicking on link "New" near by Service Bus connection
+- ![img306](img/img306.PNG)
+- Define new connection to service bus
+    - Click on Add a connection string
+    - Define connection name
+    - Insert Connection string to your service bus
+    - ![img307](img/img307.PNG)
+- Click on Create button
+- In your new Function click on option "Integrate"
+- ![img308](img/img308.PNG)
+- An there in detail view select "New Output"
+- ![img309](img/img309.PNG)
+- In the list of possible output resources select "Azure DocumentDB Document)
+- ![img310](img/img310.PNG)
+- In documentdb form define
+    - Database name to `ToDoDB`
+    - Collection Name to `ToDoComments`
+- ![img311](img/img311.PNG)
+- Click on link "new" near by DocumentDN account connection and select your existing DocumentDB
+- ![img312](img/img312.PNG)
+- Click on Save button
+- Go back to your function and select option "Develop"
+- ![img313](img/img313.PNG)
+- Update JavaScript code in following way:
 
-create func app
+```javascript
+module.exports = function(context, mySbMsg) {
+    context.log('JavaScript ServiceBus topic trigger function processed message: ', mySbMsg);
+        context.bindings.outputDocument = {
+            Id : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);}),
+            ToDoGId : mySbMsg.GId,
+            Created : new Date(),
+            Comment : "Your ToDo item has CRITICAL category, this message is from Azure Function App.."
+        } 
+        context.log('JavaScript ServiceBus topic trigger function inserting document: ', context.bindings.outputDocument);
+    context.done();
+};
+```
+
+- Save changes
+
+#### Function app for processing "all" subscription
+
+- Create new Function in same way like in the previous example (from template ServiceBusTopisTrigger - JavaScript)
+- define connection to existing Service Bus
+- use Topic name `todotopic`
+- and Subscription name `all`
+- define output to your DocumentDB 
+- use this JavaScript code for Function:
+
+```javascript
+module.exports = function(context, mySbMsg) {
+    context.log('JavaScript ServiceBus topic trigger function processed message: ', mySbMsg);
+    if(mySbMsg.Note.search(/azure/i) > 0){
+        context.bindings.outputDocument = {
+            Id : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);}),
+            ToDoGId : mySbMsg.GId,
+            Created : new Date(),
+            Comment : "Your ToDo item contains important word AZURE, this message is from Azure Function App.."
+        } 
+        context.log('JavaScript ServiceBus topic trigger function inserting document: ', context.bindings.outputDocument);
+    }
+    context.done();
+};
+```
+
 
 ## Profile Web App with Application Insights
 
- 
+Information source: https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview
 
+#### Enable Application Insights on Web App
 
+- Create Application Insights resource
+    - Select your Web App (App Service) in your resource group
+    - In Web App select option "Application insights" in Monitoring section
+    - ![img401](img/img401.PNG)
+    - Define valid name for your Application Insights resource
+    - ![img401](img/img402.PNG)
+    - Clock Ok button to create Application Insigths resource
+    - Finally restart your Web App to see performance metrics
+    - ![img403](img/img403.PNG)
+    - Azure will install Application Extension to your Web App
+
+- Process few HTTP requests in your app to collect data for Application Insights
+- Select Application Insights in your resource group and check data
+
+#### Enable detail analyses on Visual Studio project
+- open your project in Visual Studio
+- Click by right mouse button on ToDoWebApp project and select "Add Application Insights Telemetry
+- ![img501](img/img501.PNG)
+- In definition page select your Application Insights resource created in previous steps
+- ![img502](img/img502.PNG)
+- Click Update resource button
+- Enable Trace log collection
+- ![img503](img/img503.PNG)
+- Click on button Collect traces from System.Diagnostic
+- Publish your project to Azure again
+
+#### Enable collection of Browser page data
+- In Azure portal select your Application insight resource in your resource group
+- In Overview page click on "Learn how to collect browser page load data."
+- ![img504](img/img504.PNG)
+- In Client side telemtry page copy to clipboard prepared JavaScript fragment
+- ![img505](img/img505.PNG)
+- In your Visual Studio instance with ToDoWebApp project open file ./Views/Shared/_Layout.cshtml
+    - Paste JavaScript code to page just before </head> element
+    - ![img506](img/img506.PNG)
+- Save page
+- Publish ToDoWebApp project again to Azure
+- See new statistics for browser page data in Application Insights
