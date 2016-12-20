@@ -336,4 +336,18 @@ Information source: https://docs.microsoft.com/en-us/azure/application-insights/
 
 Information source: https://docs.microsoft.com/en-us/azure/app-service-web/app-service-web-app-performance-test 
 
+- Select your Web App in resource group and click on option "Performance test"
+- In detail page click on link "Set Account"
+- ![img601](img/img601.PNG)
+- If you have no Team Service Account than create new one by clicking on link "Or Create New"
+- ![img602](img/img602.PNG)
+- Enter valid account name, select subscription for account and Location for account
+- ![img603](img/img603.PNG)
+- By clicking on button Ok account will be created or selected
+- Than click on button "+ Add" in Performance test detail
+- ![img604](img/img604.PNG)
+- Define Test details in Performance test pane
+- ![img604](img/img605.PNG)
+- Than click on button Run test
+- After test execution see test results
 
