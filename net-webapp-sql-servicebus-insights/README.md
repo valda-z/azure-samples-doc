@@ -111,7 +111,7 @@ Windows version of emulator running on Windows 2016 server with docker extension
 - ![img124](img/img124.PNG)
 - Click "Add extension" link and select "Custom Script Extension" from list of available extension - than click on Create button
 - ![img126](img/img126.PNG)
-- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/net-webapp-sql-servicebus-insights/setups.ps1 
+- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/master/net-webapp-sql-servicebus-insights/setups.ps1 
 - Select setup.ps1 file to the "Script File" field
 - Enter to "Arguments" this command: `powershell.exe -ExecutionPolicy Unrestricted -File setup.ps1`
 - Click on Ok button and on parent pane also on Ok button
@@ -133,7 +133,7 @@ Linux version of emulator running on Ubuntu Server 16.04 with docker, Ubuntu ser
 - In Settings pane leave "new" storage account, check that our VLAN for Web App is selected and "default" subnet is selected, switch Monitoring / boot diagnostic to "Disabled" and configure "Extension" - see next image with detailed Extension configuration
 - ![img124](img/img124.PNG)
 - Click "Add extension" link and select "Custom Script For Linux" from list of available extension - than click on Create button
-- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/net-webapp-sql-servicebus-insights/setups.sh 
+- Download extension script: https://raw.githubusercontent.com/valda-z/azure-samples-doc/master/net-webapp-sql-servicebus-insights/setup.sh 
 - Select setup.sh file to the "Script File" field
 - Enter to "Arguments" this command: `sh setup.sh`
 - Click on Ok button and on parent pane also on Ok button
