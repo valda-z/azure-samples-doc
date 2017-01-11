@@ -15,7 +15,8 @@ Simple ToDo application which uses ASP NET MVC front end, data are stored in Azu
     - ![img3](img/img3.PNG)
     - Azure will show list of resources which can be created, use "Web App" - Microsoft/Web + Mobile and click "Create Button
     - ![img4](img/img4.PNG)
-    - Enter valid app name and select your existing Resource group created in previous steps
+    - Enter valid app name and select your existing Resource group created in previous steps.
+        Also create and use **new** App Service plan/Location 
     - ![img5](img/img5.PNG)
 - Create Azure SQL database
     - Again use green "+" for creating new resource, enter "sql" to search area and press Enter
