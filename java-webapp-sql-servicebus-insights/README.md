@@ -408,3 +408,7 @@ Information source: https://docs.microsoft.com/en-us/azure/app-service-web/app-s
 - Than click on button Run test
 - After test execution see test results
 
+## JAVA log integration to App Insights
+
+https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-trace-logs 
+
