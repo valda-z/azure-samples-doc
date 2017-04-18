@@ -412,3 +412,5 @@ Information source: https://docs.microsoft.com/en-us/azure/app-service-web/app-s
 
 https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-trace-logs 
 
+https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-agent
+
