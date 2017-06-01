@@ -38,16 +38,7 @@ Important is that we can utilize "Low priority nodes" - it means that we can use
     - Select Node Size to "A2"
     - Target dedicated nodes - "2", Low priority nodes "2"
     - Enable start task
-    - Start task command: 
-
-
-```
-/bin/sh -c "sudo apt-get -y update"
-/bin/sh -c "sudo apt-get -y install npm nodejs imagemagick nodejs-legacy"
-
-```
-
-- .
+    - Start task command: `sudo /bin/sh -c "apt-get -y update; apt-get -y install npm nodejs imagemagick nodejs-legacy"`
     - User identity: "Task autouser, Admin"
     - And switch "Wait for success" to True
     - ![img](img/img6.png "")
