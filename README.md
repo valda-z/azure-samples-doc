@@ -31,3 +31,7 @@ Simple ToDo application which uses ASP NET MVC front end, data are stored in Azu
 ## 8. [JAVA Web App, Sql, Service Bus, Application Insights](java-webapp-sql-servicebus-insights/README.md)
 
 Simple ToDo application which uses spring-boot front end (Web App on Linux hosting docker image), data are stored in Azure SQL database and each new ToDo item is processed to Service Bus. From Service bus are messages processed by Function Apps which are connected to Service Bus events. Function Apps create new entries in DocumentDB which is used like a storage for "comments" record for each ToDo record. 
+
+## 9. [Azure Batch Service](azbatch/README.md)
+
+Example node.js project which uses Azure Batch Service for parallel processing during image transformation - linearly scalable pool of VMs (include cheap "Low priority VMs").    
