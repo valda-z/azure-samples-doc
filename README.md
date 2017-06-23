@@ -34,4 +34,8 @@ Simple ToDo application which uses spring-boot front end (Web App on Linux hosti
 
 ## 9. [Azure Batch Service](azbatch/README.md)
 
-Example node.js project which uses Azure Batch Service for parallel processing during image transformation - linearly scalable pool of VMs (include cheap "Low priority VMs").    
+Example node.js project which uses Azure Batch Service for parallel processing during image transformation - linearly scalable pool of VMs (include cheap "Low priority VMs").
+
+## 10. [Kubernetes federation](kubefed/README.md)
+
+Example how to provision kubernetes clusters in federation (cluster of clusters).    
