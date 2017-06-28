@@ -84,7 +84,7 @@ resourceGroup = KUBEDNS
 ```
 
 - Create federation
-- `kubefed init myfederation --host-cluster-context=valdakube1mgmt  --dns-provider=&quot;azure-azuredns&quot; --dns-zone-name=&quot;kube.valda.cloud&quot; --dns-provider-config=/home/valda/dns.conf --image=xtoph/hyperkube-amd64:azuredns.20`
+- `kubefed init myfederation --host-cluster-context=valdakube1mgmt  --dns-provider="azure-azuredns" --dns-zone-name="kube.valda.cloud" --dns-provider-config=/home/valda/dns.conf --image=xtoph/hyperkube-amd64:azuredns.20`
 - create DEFAULT namespace in federation
 - `kubectl create namespace default --context=myfederation`
 - switch to cluster federation
