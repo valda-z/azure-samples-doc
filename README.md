@@ -39,3 +39,8 @@ Example node.js project which uses Azure Batch Service for parallel processing d
 ## 10. [Kubernetes federation](kubefed/README.md)
 
 Example how to provision kubernetes clusters in federation (cluster of clusters).    
+
+## 11. [Function App demo](../functionapp-demo)
+
+Simple demo how to create single page web app powered by angularjs, Function app and Azure Cosmos DB - provisioned by single template.    
+
